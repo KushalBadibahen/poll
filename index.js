@@ -16,15 +16,11 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/api/vote",async (req,res) =>{
-    // console.log(req.body)
    
     try{
-        try{
-            const newUser = new User(req.body);
-            await newUser.save();
-        }catch(err){
-            res.status(500).json({message: "Old User"});
-        }
+
+        const newUser = new User(req.body);
+        await newUser.save();
         const docs = await User.aggregate([
             {
               $group: {
