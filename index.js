@@ -18,8 +18,8 @@ app.use(express.json());
 app.post("/api/vote",async (req,res) =>{
    
     try{
-
         const newUser = new User(req.body);
+        console.log(newUser)
         await newUser.save();
         const docs = await User.aggregate([
             {
@@ -37,7 +37,7 @@ app.post("/api/vote",async (req,res) =>{
       
         res.status(200).json(counts);
     }catch(err){
-        res.status(500).json({message: err.message});
+        res.status(500).json({message: err});
     }
 })
 
