@@ -19,7 +19,7 @@ app.post("/api/vote",async (req,res) =>{
    
     try{
         const newUser = new User(req.body);
-        console.log(newUser)
+        // console.log(newUser)
         await newUser.save();
         const docs = await User.aggregate([
             {
