@@ -34,8 +34,10 @@ app.post("/api/vote",async (req,res) =>{
           docs.forEach(doc => {
             counts[doc._id] = doc.count;
           });
+
+         const length = counts.No+counts.Yes+counts.Planning
       
-        res.status(200).json({...counts,length: counts.length});
+        res.status(200).json({...counts,length:length});
     }catch(err){
         res.status(500).json({message: err});
     }
