@@ -35,10 +35,20 @@ app.post("/api/vote",async (req,res) =>{
             counts[doc._id] = doc.count;
           });
       
-        res.status(200).json(counts);
+        res.status(200).json({...counts,length: counts.length});
     }catch(err){
         res.status(500).json({message: err});
     }
+})
+
+app.get("/api/voterNumber",async (req,res) =>{
+   
+  try{
+      const voters = await User.find()
+      res.status(200).json({voterNumber:voters.length})
+  }catch(err){
+      res.status(500).json({message: err});
+  }
 })
 
 app.listen(8080, () => console.log("Backend server is running"));
